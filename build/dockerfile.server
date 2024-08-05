@@ -1,0 +1,14 @@
+# Use an official GCC image as a base
+FROM gcc:latest
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the source directory contents into the container at /app
+COPY src/ .
+
+# Compile the server code
+RUN g++ -std=c++11 -o server server.cpp -pthread
+
+# Run the server
+CMD ["./server"]

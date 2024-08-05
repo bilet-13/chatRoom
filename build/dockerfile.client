@@ -1,0 +1,17 @@
+# Use an official GCC image as a base
+FROM gcc:latest
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the source directory contents into the container at /app
+COPY src/ .
+
+# Compile the client code
+RUN g++ -std=c++11 -o client client.cpp -pthread
+
+# Set the entrypoint to the client executable
+ENTRYPOINT ["./client"]
+
+# Default argument to the client executable (can be overridden)
+CMD ["default_username"]
